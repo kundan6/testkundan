@@ -1,0 +1,95 @@
+<div>
+ <h4><strong>Create User</strong> </h4>
+</div>
+<form #signUpForm="ngForm"  class="signUpForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+  <div class="d-flex justify-content-between">
+    <label  class="text-nowrap">User name :</label>
+    <input type="text" #fullName="ngModel" [(ngModel)]="userService.selectedUser.fullName" name="fullName" required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullName.valid }">
+  <div *ngIf="signUpForm.submitted && !fullName.valid">
+    <label class="validation-message">This field is required.</label>
+  </div>
+  </div>
+ 
+  <div class="d-flex justify-content-between">
+    <label  class="text-nowrap">Email :</label>
+    <input type="text" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email" 
+    required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
+    <div *ngIf="signUpForm.submitted && email.errors">
+      <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
+      <label *ngIf="email.errors.pattern" class="validation-message">Invalid email address.</label>
+    </div>
+  </div>
+  
+  <div class="d-flex justify-content-between">
+      <label  class="text-nowrap">Password :</label> <input type="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"
+  minlength="4" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
+  <div *ngIf="signUpForm.submitted && password.errors">
+    <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+    <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+  </div>
+  </div> 
+  <div class="d-flex justify-content-between">
+    <label  class="text-nowrap"> Name :</label>
+    <input type="text"  name="Name"   required  #Name="ngModel" [(ngModel)]="userService.selectedUser.Name"> 
+    <div *ngIf="signUpForm.submitted && !Name.valid">
+      <label class="validation-message">This field is required.</label>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between">
+    <label  class="text-nowrap">Display Name :</label>
+    <input type="text"  name="DisplayName"  required  #DisplayName="ngModel" [(ngModel)]="userService.selectedUser.DisplayName" > 
+    <div *ngIf="signUpForm.submitted && !DisplayName.valid">
+      <label class="validation-message">This field is required.</label>
+    </div>
+  </div>
+   <div class="d-flex justify-content-between">
+    <label  class="text-nowrap">Website :</label>
+    <input type="text"  name="Website" #website="ngModel" [(ngModel)]="userService.selectedUser.website"  required > 
+    <div *ngIf="signUpForm.submitted && !website.valid">
+      <label class="validation-message">This field is required.</label>
+    </div>
+  </div>
+  
+  <div class="d-flex justify-content-between">
+    <label  class="text-nowrap">Bio :</label>
+    <textarea id="w3mission" rows="4" cols="40" #bio="ngModel" [(ngModel)]="userService.selectedUser.bio" >
+      
+      </textarea> 
+      <div *ngIf="signUpForm.submitted && !bio.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+    </div>
+  <div class="d-flex justify-content-between">
+    <label  class="text-nowrap">Jabber :</label>
+    <input type="text"  name="fullName"   required #jabber="ngModel" [(ngModel)]="userService.selectedUser.jabber" > 
+    <div *ngIf="signUpForm.submitted && !jabber.valid">
+      <label class="validation-message">This field is required.</label>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between">
+    <label  class="text-nowrap">AOL IM :</label>
+    <input type="text"  name="aol"   required  #aol="ngModel" [(ngModel)]="userService.selectedUser.aol"> 
+    <div *ngIf="signUpForm.submitted && !aol.valid">
+      <label class="validation-message">This field is required.</label>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between">
+    <label  class="text-nowrap">Yahoo IM :</label>
+    <input type="text"  name="yahoo"  required #yahoo="ngModel" [(ngModel)]="userService.selectedUser.yahoo" > 
+  <div *ngIf="signUpForm.submitted && !yahoo">
+    <label class="validation-message">This field is required.</label>
+  </div>
+</div>
+  
+  <input type="submit" value="Create Access">
+</form>
+
+<!-- Success message -->
+<div class="success" *ngIf="showSucessMessage">
+  Saved successfully
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>
