@@ -1,7 +1,7 @@
-<div class="card m-auto text-center"> <h4 class="underlineHover my-4">Welcome Back  </h4>
-   
-    <!-- <img src="assets/img/single_user.png" id="icon" alt="User Icon" /> -->
-  
+
+<mat-card>
+  <mat-card-content>
+<div class="card m-auto text-center"> <h4 class="underlineHover my-4">Welcome Back  </h4> 
   <form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)" >
    
     <input type="text" name="email" #email="ngModel" [(ngModel)]="model.email" placeholder="Email" [pattern]="emailRegex" required
@@ -16,9 +16,13 @@
     </div>
     <input type="submit" value="Sign In">
     <h6 class="mb-5">Don't have account?  <a  routerLink="/signup"  routerLinkActive="active">Sign Up</a> </h6>
-  </form>
+  </form> 
   <!-- Error message -->
 <div class="alert" *ngIf="serverErrorMessages">
     {{serverErrorMessages}}
   </div>
+
+  
 </div>
+</mat-card-content>
+</mat-card>
